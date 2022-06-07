@@ -25,15 +25,20 @@ const Earth = () => {
 
   const earthRef = useRef();
 
+  // useFrame(({ clock })=> {
+  //elabsedTime = clock.getElapsedTime();
+  //earthRef.current.rotation.y = elapsedTime / 6;
+  // });
+
   return (
     <>
       {/* <ambientLight intensity={2} /> */}
-      <pointLight color="#f6f3ea" position={[2, 0, 2]} intensity={2} />
+      <pointLight color="#f6f3ea" position={[1, 0, 8]} intensity={2} />
 
       <Stars radius={300} depth={60} count={8000} factor={7} fade={true} />
 
       <mesh>
-        <sphereGeometry args={[2, 60, 60]} />
+        <sphereGeometry args={[2, 32, 32]} />
         <meshPhongMaterial
           map={cloudMap}
           opacity={0.5}
@@ -43,8 +48,8 @@ const Earth = () => {
         />
       </mesh>
 
-      <mesh>
-        <sphereGeometry args={[2, 60, 60]} />
+      <mesh ref={earthRef}>
+        <sphereGeometry args={[2, 32, 32]} />
         <meshPhongMaterial specularMap={NegativeMap} />
         <meshStandardMaterial
           map={colorMap}
@@ -53,7 +58,7 @@ const Earth = () => {
           roughness={0.7}
         />
         <OrbitControls
-          enableZoom={true}
+          enableZoom={false}
           enablePan={true}
           zoomSpeed={0.6}
           panSpeed={0.5}
