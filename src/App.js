@@ -20,10 +20,7 @@ export default function App() {
       </CanvasContainer>
 
       <CanvasContainer>
-        <Canvas
-          colorManagement={false}
-          camera={{ position: [100, 10, 0], fov: 75 }}
-        >
+        <Canvas camera={{ position: [100, 10, 0], fov: 75 }}>
           <Suspense fallback={null}></Suspense>
         </Canvas>
       </CanvasContainer>

@@ -5,7 +5,7 @@ import cloud from "../../../public/clouds.jpg";
 import negativeMap from "../../../public/earth-negative-map.jpg";
 import nightMap from "../../../public/earth-night-map.jpg";
 import terrainMap from "../../../public/earth-terrain-map.jpg";
-import { DoubleSide, TextureLoader } from "three";
+import { DoubleSide, NotEqualStencilFunc, TextureLoader } from "three";
 import { OrbitControls, Stars } from "@react-three/drei";
 
 const Earth = () => {
@@ -23,11 +23,11 @@ const Earth = () => {
     negativeMap
   ]);
 
-  const earthRef = useRef();
+  const earthRef = useRef(null);
 
   // useFrame(({ clock })=> {
-  //elabsedTime = clock.getElapsedTime();
-  //earthRef.current.rotation.y = elapsedTime / 6;
+  //const time = clock.getElapsedTime();
+  // earthRef.current.rotation.y = time / 6;
   // });
 
   return (
@@ -37,7 +37,7 @@ const Earth = () => {
 
       <Stars radius={300} depth={60} count={8000} factor={7} fade={true} />
 
-      <mesh>
+      <mesh ref={earthRef}>
         <sphereGeometry args={[2, 32, 32]} />
         <meshPhongMaterial
           map={cloudMap}
